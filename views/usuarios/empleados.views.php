@@ -2,22 +2,23 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Basic Bootstrap Table -->
 <div class="card">
-    <button type="button" class="btn btn-outline-secondary" onclick="sucursales(); roles()" data-bs-toggle="modal" data-bs-target="#ModalUsuarios">Nuevo Usuario</button>
+    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ModalEmpleados">Nuevo Empleado</button>
 
 
-    <h5 class="card-header">Lista de Usuarios</h5>
+    <h5 class="card-header">Lista de Empleador</h5>
     <div class="table-responsive text-nowrap">
         <table class="table">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Correo</th>
-                    <th>Acciones</th>
+                    <th>Nombre</th>
+                    <th>cargo</th>
+                    <th>salario</th>
+                    <th>Fecha_contratacion</th>
+
                 </tr>
             </thead>
-            <tbody class="table-border-bottom-0" id="ListaUsuarios">
+            <tbody class="table-border-bottom-0" id="ListEmpleados">
 
             </tbody>
         </table>
@@ -32,34 +33,35 @@
     }
 </style>
 
-<div class="modal" tabindex="-1" id="ModalUsuarios">
+<div class="modal" tabindex="-1" id="ModalEmpleados">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tituloModal">Insertar Usuario</h5>
+                <h5 class="modal-title" id="tituloModal">Insertar Empelado</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form id="form_usuarios" method="post">
+            <form id="form_empleados" method="post">
                 <input type="hidden" name="idUsuarios" id="idUsuarios">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="Nombres">Nombres</label>
-                        <input type="text" name="Nombres" id="Nombres" class="form-control" placeholder="Ingrese su Nombre" required>
+                        <label for="Nombres">Nombre</label>
+                        <input type="text" name="Nombre" id="Nombre" class="form-control" onfocusout="unoconCedula()" placeholder="Ingrese su Nombre" required>
 
                     </div>
                     <div class="form-group">
-                        <label for="Nombres">Apellido</label>
-                        <input type="text" name="Apellido" id="Apellido" class="form-control" placeholder="Ingrese sus Apellido" required>
+                        <label for="Nombres">Cargo</label>
+                        <input type="text" name="Cargo" id="Nombres" class="form-control" placeholder="Ingrese su cargo" required>
                     </div>
                     <div class="form-group">
-                        <label for="Nombres">Correo Electrónico</label>
-                        <input onfocusout="unoconCorreo()" type="email" name="Correo" id="Correo" class="form-control" placeholder="Ingrese su Correo" required>
+                        <label for="Nombres">Salario</label>
+                        <input type="text" name="salario" id="salario" class="form-control" placeholder="Ingrese su salario" required>
                     </div>
                     <div class="form-group">
-                        <label for="Nombres">Contraseña</label>
-                        <input type="password" name="contrasenia" id="contrasenia" class="form-control" placeholder="**********" required>
+                        <label for="Fecha">Fecha_Contratacion</label>
+                        <input type="date" id="Fecha" name="Fecha" class="form-control" placeholder="Ingrese la fecha" required>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -77,11 +79,11 @@
 
 <?php require_once('../html/scripts2.php') ?>
 
-<script src="./usuarios.js"></script>
+<script src="./empleados.js"></script>
 
 
-<!--
-<tr>
+
+<!--<tr>
     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
     <td>Albert Cook</td>
     <td>
@@ -109,8 +111,8 @@
             </div>
         </div>
     </td>
-</tr>
-<tr>
+</tr>-->
+<!--<tr>
     <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>React Project</strong></td>
     <td>Barry Hunter</td>
     <td>
@@ -138,8 +140,8 @@
             </div>
         </div>
     </td>
-</tr>
-<tr>
+</tr>-->
+<!--<tr>
     <td><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>VueJs Project</strong></td>
     <td>Trevor Baker</td>
     <td>
@@ -167,8 +169,8 @@
             </div>
         </div>
     </td>
-</tr>
-<tr>
+</tr>-->
+<!--<tr>
     <td>
         <i class="fab fa-bootstrap fa-lg text-primary me-3"></i> <strong>Bootstrap Project</strong>
     </td>
@@ -193,11 +195,9 @@
                 <i class="bx bx-dots-vertical-rounded"></i>
             </button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-2"></i> Edit</a>
-                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-2"></i> Delete</a>
+                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-2"></i> Editar</a>
+                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-2"></i> Eliminar</a>
             </div>
         </div>
     </td>
-</tr>
-
--->
+</tr>-->

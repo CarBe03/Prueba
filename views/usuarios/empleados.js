@@ -1,5 +1,5 @@
 function init() {
-    $("#form_usuarios").on("submit", (e) => {
+    $("#form_empleados").on("submit", (e) => {
       GuardarEditar(e);
     });
   }
@@ -10,35 +10,34 @@ function init() {
   
   var CargaLista = () => {
     var html = "";
-    $.get(ruta + "todos", (ListUsuarios) => {
-      ListUsuarios = JSON.parse(ListUsuarios);
-      $.each(ListUsuarios, (index, usuario) => {
+    $.get(ruta + "todos", (ListEmpleados) => {
+      ListEmpleados = JSON.parse(ListEmpleados);
+      $.each(ListEmpleados, (index, empleado) => {
         html += `<tr>
               <td>${index + 1}</td>
-  
-              <td>${usuario.Nombres}</td>
-              <td>${usuario.Apellidos}</td>
-              <td>${usuario.Rol}</td>
-              <td>${usuario.Nombre}</td>
+              <td>${empleado.Nombre}</td>
+              <td>${empleado.Cargo}</td>
+              <td>${empleado.Salario}</td>
+              <td>${empleado.Fecha_Contratacion}</td>
   <td>
   <button class='btn btn-primary' onclick='uno(${
-          usuario.idUsuarios
-        })'   data-bs-toggle="modal" data-bs-target="#ModalUsuarios">Editar</button>
+          empleado.id_empleado
+        })'   data-bs-toggle="modal" data-bs-target="#ModalEmpleados">Editar</button>
   <button class='btn btn-danger' onclick='eliminar(${
-          usuario.idUsuarios
+          empleado.id_empleado
         })'>Eliminar</button>
               `;
       });
-      $("#ListaUsuarios").html(html);
+      $("#ListEmpleados").html(html);
     });
   };
   
   var GuardarEditar = (e) => {
     e.preventDefault();
-    var DatosFormularioUsuario = new FormData($("#form_usuarios")[0]);
+    var DatosFormularioEmpleado = new FormData($("#form_empleados")[0]);
     var accion = "";
   
-    if (document.getElementById("idUsuarios").value != "") {
+    if (document.getElementById("id_empleado").value != "") {
       accion = ruta + "actualizar";
     } else {
       accion = ruta + "insertar";
@@ -46,7 +45,7 @@ function init() {
     $.ajax({
       url: accion,
       type: "post",
-      data: DatosFormularioUsuario,
+      data: DatosFormularioEmpleado,
       processData: false,
       contentType: false,
       cache: false,
@@ -55,7 +54,7 @@ function init() {
         respuesta = JSON.parse(respuesta);
         if (respuesta == "ok") {
           Swal.fire({
-            title: "Usuarios!",
+            title: "Empleado!",
             text: "Se guardó con éxito",
             icon: "success",
           });
@@ -63,7 +62,7 @@ function init() {
           LimpiarCajas();
         } else {
           Swal.fire({
-            title: "Usuarios!",
+            title: "Empleado!",
             text: "Error al guradar",
             icon: "error",
           });
@@ -72,22 +71,21 @@ function init() {
     });
   };
   
-  var uno = async (idUsuarios) => {
-    await sucursales();
-    await roles();
-    document.getElementById("tituloModal").innerHTML = "Actualizar Usuarios";
-    $.post(ruta + "uno", { idUsuarios: idUsuarios }, (usuario) => {
-      usuario = JSON.parse(usuario);
-      document.getElementById("idUsuarios").value = usuario.idUsuarios;
-      document.getElementById("Cedula").value = usuario.Cedula;
-      document.getElementById("Nombres").value = usuario.Nombres;
-      document.getElementById("Apellidos").value = usuario.Apellidos;
-      document.getElementById("Correo").value = usuario.Correo;
-      document.getElementById("contrasenia").value = usuario.contrasenia;
+  var uno = async (id_empleado) => {
+ 
+    document.getElementById("tituloModal").innerHTML = "Actualizar Empleados";
+    $.post(ruta + "uno", { id_empleado: id_empleado }, (empleado) => {
+      empleado = JSON.parse(empleado);
+      document.getElementById("id_empleado").value = empleado.id_empleado;
+      document.getElementById("Nombre").value = empleado.Nombre;
+      document.getElementById("Cargo").value = empleado.Cargo;
+      document.getElementById("Salario").value = empleado.Salario;
+      document.getElementById("fecha_contratacion").value = empleado.fecha_contratacion;
+    
   
     });
   };
-  var unoconCedula = () => {
+ /* var unoconCedula = () => {
     var cedula = document.getElementById("Cedula").value;
     $.post(ruta + "unoconCedula", { cedula: cedula }, (usuario) => {
       usuario = JSON.parse(usuario);
@@ -100,8 +98,8 @@ function init() {
         document.getElementById("Cedula").value = "";
       }
     });
-  };
-  var unoconCorreo = () => {
+  };*/
+ /* var unoconCorreo = () => {
     var Correo = document.getElementById("Correo").value;
     $.post(ruta + "unoconCorreo", { Correo: Correo }, (usuario) => {
       usuario = JSON.parse(usuario);
@@ -114,14 +112,13 @@ function init() {
         document.getElementById("Correo").value = "";
       }
     });
-  };
+  };*/
   
   
-  
-  var eliminar = (idUsuarios) => {
+  var eliminar = (id_empleado) => {
     Swal.fire({
-      title: "Usuarios",
-      text: "Esta segurpo que desea eliminar el usuario",
+      title: "Empleados",
+      text: "Esta segurpo que desea eliminar el empleado",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -129,18 +126,18 @@ function init() {
       confirmButtonText: "Eliminar",
     }).then((result) => {
       if (result.isConfirmed) {
-        $.post(ruta + "eliminar", { idUsuarios: idUsuarios }, (respuesta) => {
+        $.post(ruta + "eliminar", { id_empleado: id_empleado }, (respuesta) => {
           respuesta = JSON.parse(respuesta);
           if (respuesta == "ok") {
             CargaLista();
             Swal.fire({
-              title: "Usuarios!",
+              title: "Empleados!",
               text: "Se emliminó con éxito",
               icon: "success",
             });
           } else {
             Swal.fire({
-              title: "Usuarios!",
+              title: "Empleados!",
               text: "Error al guradar",
               icon: "error",
             });
@@ -151,14 +148,13 @@ function init() {
   };
   
   var LimpiarCajas = () => {
-    document.getElementById("idUsuarios").value = "";
-    document.getElementById("Cedula").value = "";
-    document.getElementById("Nombres").value = "";
-    document.getElementById("Apellidos").value = "";
-    document.getElementById("Correo").value = "";
-    document.getElementById("contrasenia").value = "";
-    document.getElementById("tituloModal").innerHTML = "Insertar Usuario";
-    $("#ModalUsuarios").modal("hide");
+    document.getElementById("id_empleado").value = "";
+    document.getElementById("Nombre").value = "";
+    document.getElementById("Cargo").value = "";
+    document.getElementById("Salario").value = "";
+    document.getElementById("fecha_contratacion").value = "";
+    document.getElementById("tituloModal").innerHTML = "Insertar Empleado";
+    $("#ModalEmpleados").modal("hide");
   };
   init();
   
