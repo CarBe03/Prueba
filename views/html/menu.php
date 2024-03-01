@@ -58,7 +58,7 @@
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">Layouts</div>
+                <div data-i18n="Layouts">Home</div>
             </a>
 
             <ul class="menu-sub">
@@ -70,12 +70,14 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="layouts-container.html" class="menu-link">
+                <a href="empleados/empleados.views.php" target="base" class="menu-link">
+                    <?php $_SESSION['rutas'] = 'Empleados'; ?>
                         <div data-i18n="Container">Empleados</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="layouts-fluid.html" class="menu-link">
+                <a href="proyectos/proyecto.views.php" target="base" class="menu-link">
+                    <?php $_SESSION['rutas'] = 'Proyectos'; ?>
                         <div data-i18n="Fluid">Proyectos</div>
                     </a>
                 </li>

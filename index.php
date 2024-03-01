@@ -41,7 +41,7 @@
   <!-- Content -->
   <form id="frm" class="mb-3" method="POST">
 
-    <video width="300" height="300" autoplay style="position: absolute; top:0px"></video>
+   <!-- <video width="300" height="300" autoplay style="position: absolute; top:0px"></video>-->
 
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
