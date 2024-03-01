@@ -10,25 +10,10 @@ class Usuarios
         $con = new ClaseConectar();
         $con = $con->ProcedimientoConectar();
         $cadena = "INSERT into Usuarios(Nombres,Apellidos,Correo,Contrasenia) values ( '$Nombres', '$Apellidos', '$Correo', '$Contrasenia')";
-
-        if (mysqli_query($con, $cadena)) {
-            $id = mysqli_insert_id($con);
-            require_once('../models/Usuarios_Roles.models.php');
-            $UsRoles = new Usuarios_Roles();
-
-            $dato = $UsRoles->Insertar($id, $idRoles);
-            if ($dato == 'ok') {
-                $usuImagen = new Usuarios;
-         
-            } else {
-                return "Error al insertar el rol";
-            }
-        } else {
-            return 'Error al insertar en la base de datos el usuario';
-        }
+        $datos = mysqli_query($con, $cadena);
+        return $datos;
         $con->close();
     }
-   
 
     public function todos()
     {
@@ -48,7 +33,7 @@ class Usuarios
         return $datos;
         $con->close();
     }
-    public function unoconCedula($Cedula)
+    /*public function unoconCedula($Cedula)
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoConectar();
@@ -56,7 +41,7 @@ class Usuarios
         $datos = mysqli_query($con, $cadena);
         return $datos;
         $con->close();
-    }
+    }*/
     public function unoconCorreo($Correo)
     {
         $con = new ClaseConectar();
@@ -89,7 +74,7 @@ class Usuarios
         if ($usro == 'ok') {
             $con = new ClaseConectar();
             $con = $con->ProcedimientoConectar();
-            $cadena = "delete from Usuarios where idUsuarios = $idUsuarios";
+            $cadena = "DELETE FROM `usuarios` WHERE idUsuarios = $idUsuarios";
 
             return "ok";
         } else {
@@ -103,8 +88,7 @@ class Usuarios
         try {
             $con = new ClaseConectar();
             $con = $con->ProcedimientoConectar();
-            $cadena = "SELECT idUsuarios, Nombres, Contrasenia, Apellidos, Correo FROM Usuarios WHERE Correo = ?";
-            
+            $cadena = "SELECT idUsuarios, Nombres, Contrasenia, Apellidos, Correo FROM Usuarios WHERE Correo = '$Correo'";
             $datos = mysqli_query($con, $cadena);
             return $datos;
         } catch (Throwable $th) {

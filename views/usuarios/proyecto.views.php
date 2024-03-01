@@ -42,11 +42,11 @@
             </div>
 
             <form id="form_empleados" method="post">
-                <input type="hidden" name="id_empleado" id="id_empleado">
+                <input type="hidden" name="id_proyecto" id="id_proyecto">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="Nombres">Nombre</label>
-                        <input type="text" name="Nombre" id="Nombre" class="form-control" onfocusout="unoconCedula()" placeholder="Ingrese su Nombre" required>
+                        <input type="text" name="Nombre" id="Nombre" class="form-control"  placeholder="Ingrese su Nombre" required>
 
                     </div>
                     <div class="form-group">
