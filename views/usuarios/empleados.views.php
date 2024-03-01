@@ -5,7 +5,7 @@
     <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ModalEmpleados">Nuevo Empleado</button>
 
 
-    <h5 class="card-header">Lista de Empleador</h5>
+    <h5 class="card-header">Lista de Empleados</h5>
     <div class="table-responsive text-nowrap">
         <table class="table">
             <thead>
@@ -18,7 +18,7 @@
 
                 </tr>
             </thead>
-            <tbody class="table-border-bottom-0" id="ListEmpleados">
+            <tbody class="table-border-bottom-0" id="ListaEmpleados">
 
             </tbody>
         </table>
@@ -42,7 +42,7 @@
             </div>
 
             <form id="form_empleados" method="post">
-                <input type="hidden" name="idUsuarios" id="idUsuarios">
+                <input type="hidden" name="id_empleado" id="id_empleado">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="Nombres">Nombre</label>

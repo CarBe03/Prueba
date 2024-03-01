@@ -28,7 +28,7 @@ function init() {
         })'>Eliminar</button>
               `;
       });
-      $("#ListEmpleados").html(html);
+      $("#ListaEmpleados").html(html);
     });
   };
   

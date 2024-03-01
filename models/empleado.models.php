@@ -8,7 +8,7 @@ class Empleado
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoConectar();
-        $cadena = "SELECT * FROM `Sucursales`";
+        $cadena = "SELECT * FROM `Empleado`";
         $datos = mysqli_query($con, $cadena);
         return $datos;
         $con->close();
