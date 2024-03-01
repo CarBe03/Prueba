@@ -34,6 +34,7 @@ class Proyecto
     }
     
     /*TODO: Procedimiento para insertar */
+    
     public function Insertar( $nombre_proyecto, $fecha_inicio, $duracion, $cliente)
     {
         $con = new ClaseConectar();
